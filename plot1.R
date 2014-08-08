@@ -1,0 +1,8 @@
+setwd("~")
+EPCData <- read.table("downloads/household_power_consumption.txt", sep = ";", header = TRUE, na.strings = "?")
+EPCData$Date <- as.Date(EPCData$Date, format = "%d/%m/%Y")
+newdata <- subset(EPCData, Date == "2007-02-01" | Date == "2007-02-02")
+setwd("desktop/coursera/ExData_Plotting1")
+png(file = "plot1.png", bg = "transparent")
+with(newdata, hist(Global_active_power, main = "Global Active Power", xlab = "Global Active Power (Kilowatts)", col = "red", ylim = c(0,1200)))
+dev.off()
